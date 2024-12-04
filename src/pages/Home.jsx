@@ -1,6 +1,8 @@
 import React from "react";
 import Banner from "../component/Banner";
 import RunningCampaing from "../component/RunningCampaing";
+import HowItWork from "../component/HowItWork";
+import WorkWithUs from "../component/WorkWithUs";
 
 const Home = () => {
   return (
@@ -10,6 +12,12 @@ const Home = () => {
       </section>
       <section className="my-9">
         <RunningCampaing />
+      </section>
+      <section className="my-10">
+        <HowItWork />
+      </section>
+      <section className="my-10">
+        <WorkWithUs />
       </section>
     </main>
   );
