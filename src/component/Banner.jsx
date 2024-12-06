@@ -4,7 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 const Banner = () => {
   return (
     <div className="container mx-auto px-3 md:px-5">
-      <Carousel autoPlay={true} infiniteLoop={true}>
+      <Carousel autoPlay={true} showThumbs={false} infiniteLoop={true}>
         <div className="hero min-h-screen bg-gradient-to-r from-indigo-500 via-purple-600 to-indigo-700">
           <div className="hero-content text-white flex-col lg:flex-row">
             <div className="lg:w-1/2">

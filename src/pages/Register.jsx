@@ -1,7 +1,42 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../utils/provider/AuthProvider";
 
 const Register = () => {
+  const { createUser, setUser, updadeUser } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+    const checkPassWord = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
+    const newUserInfo = { name, email };
+    if (checkPassWord.test(password)) {
+      createUser(email, password).then((user) => {
+        updadeUser(name, photo);
+        setUser(user.user);
+        navigate(location.state ? location.state : "/");
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUserInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setUser(data);
+          });
+      });
+    } else {
+      console.log("error");
+    }
+  };
+
   return (
     <div className="container mx-auto px-3 md:px-5">
       <div className="hero bg-gradient-to-br rounded-xl my-6 from-green-400 to-orange-300 min-h-screen">
@@ -10,7 +45,7 @@ const Register = () => {
             <h1 className="text-5xl font-bold">Register now!</h1>
           </div>
           <div className="card bg-base-100 w-[500px] shrink-0 shadow-2xl">
-            <form className="card-body">
+            <form onSubmit={handleSubmit} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -59,6 +94,7 @@ const Register = () => {
                   placeholder="password"
                   className="input input-bordered"
                   required
+                  name="password"
                 />
               </div>
 

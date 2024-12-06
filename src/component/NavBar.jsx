@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../utils/provider/AuthProvider";
 
 const NavBar = () => {
+  const { handleSigOut, user } = useContext(AuthContext);
+
   return (
     <div className="container mx-auto px-3 md:px-5">
       <div>
@@ -39,7 +42,7 @@ const NavBar = () => {
                   <Link to={"/"}>All Campaign</Link>
                 </li>
                 <li>
-                  <Link to={"/"}>Add New Campaign</Link>
+                  <Link to={"/campaing"}>Add New Campaign</Link>
                 </li>
                 <li>
                   <Link to={"/"}>My Campaign</Link>
@@ -59,10 +62,10 @@ const NavBar = () => {
                 <Link to={"/"}>Home</Link>
               </li>
               <li>
-                <Link to={"/"}>All Campaign</Link>
+                <Link to={"/allCampaign"}>All Campaign</Link>
               </li>
               <li>
-                <Link to={"/"}>Add New Campaign</Link>
+                <Link to={"/campaing"}>Add New Campaign</Link>
               </li>
               <li>
                 <Link to={"/"}>My Campaign</Link>
@@ -72,10 +75,29 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-          <div className="navbar-end">
-            <Link to={"/login"} className="btn">
-              LogIn
-            </Link>
+          <div className="navbar-end relative group">
+            {user && user.email ? (
+              <>
+                <img
+                  className="w-[50px] h-[50px]  rounded-full"
+                  src={user.photoURL}
+                  alt=""
+                />
+
+                <div
+                  onClick={handleSigOut}
+                  className=" absolute p-3 rounded-md translate-y-6 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 bg-zinc-600 px-5 text-white top-16 right-0 z-10 transition-all duration-500"
+                >
+                  <h1 className="mb-2">{user.email}</h1>
+                  <h1 className="mb-2">{user.displayName}</h1>
+                  <Link className="btn">Log-Out</Link>
+                </div>
+              </>
+            ) : (
+              <Link to={"/login"} className="btn">
+                LogIn
+              </Link>
+            )}
           </div>
         </div>
       </div>

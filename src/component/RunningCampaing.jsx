@@ -1,9 +1,9 @@
 import React from "react";
 import CampaingCard from "./CampaingCard";
 
-const RunningCampaing = () => {
+const RunningCampaing = ({ data }) => {
   return (
-    <div className="">
+    <div className="container mx-auto px-3 md:px-5">
       <div>
         <div>
           <h1 className="text-center text-3xl font-bold text-secondary">
@@ -15,10 +15,10 @@ const RunningCampaing = () => {
             support,
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3">
-          <CampaingCard />
-          <CampaingCard />
-          <CampaingCard />
+        <div className="grid md:grid-cols-2 gap-5 lg:grid-cols-3">
+          {data?.map((item) => (
+            <CampaingCard key={item._id} data={item} />
+          ))}
         </div>
       </div>
     </div>
