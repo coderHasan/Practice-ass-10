@@ -11,6 +11,7 @@ import ErrorPage from "../pages/ErrorPage";
 import MyDonate from "../pages/MyDonate";
 import auth from "../utils/firbase/firbase.init";
 import MyCampaign from "../pages/MyCampaign";
+import Update from "../pages/Update";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,12 @@ const router = createBrowserRouter([
         path: "/myCampaign",
         element: <MyCampaign />,
         loader: () => fetch(`http://localhost:5000/addCampaign`),
+      },
+      {
+        path: "/update/:id",
+        element: <Update />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/addCampaign/${params.id}`),
       },
     ],
   },

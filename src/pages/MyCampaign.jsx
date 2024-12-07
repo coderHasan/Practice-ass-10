@@ -8,7 +8,7 @@ const MyCampaign = () => {
   const data = useLoaderData();
   const { user } = useContext(AuthContext);
 
-  const remainingData = data.filter((users) => users.email === user.email);
+  const remainingData = data.filter((users) => users?.email === user?.email);
   return (
     <div className="container mx-auto px-3 md:px-5">
       <div className="">

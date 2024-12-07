@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../utils/provider/AuthProvider";
+import { useLoaderData } from "react-router";
 
 const Update = () => {
+  const { user } = useContext(AuthContext);
+  const data = useLoaderData();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -76,6 +80,7 @@ const Update = () => {
                     <input
                       name="photo"
                       type="text"
+                      defaultValue={data?.photo}
                       placeholder="Photo url"
                       className="input input-bordered"
                       required
@@ -89,6 +94,7 @@ const Update = () => {
                     <input
                       name="title"
                       type="text"
+                      defaultValue={data?.title}
                       placeholder="Title"
                       className="input input-bordered"
                       required
@@ -103,6 +109,7 @@ const Update = () => {
                     </label>
                     <input
                       name="desc"
+                      defaultValue={data?.desc}
                       type="text"
                       placeholder="description"
                       className="input input-bordered"
@@ -116,6 +123,7 @@ const Update = () => {
                     </label>
                     <select
                       name="campainType"
+                      defaultValue={data?.campainType}
                       className="select select-bordered w-full "
                     >
                       <option disabled selected>
@@ -135,6 +143,7 @@ const Update = () => {
                   </label>
                   <input
                     name="amount"
+                    defaultValue={data?.amount}
                     type="number"
                     placeholder={300}
                     className="input input-bordered"
@@ -148,6 +157,7 @@ const Update = () => {
                   </label>
                   <input
                     name="date"
+                    defaultValue={data?.date}
                     type="date"
                     placeholder="Date/Time"
                     className="input input-bordered"
