@@ -7,6 +7,9 @@ import AddCampaign from "../component/AddCampaign";
 import AllCampaign from "../pages/AllCampaign";
 import DetailsPage from "../pages/DetailsPage";
 import PrivetRoute from "./PrivetRoute";
+import ErrorPage from "../pages/ErrorPage";
+import MyDonate from "../pages/MyDonate";
+import auth from "../utils/firbase/firbase.init";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: "allCampaign",
         element: <AllCampaign />,
-        loader: () => fetch("http://localhost:5000/addCampaign"),
+        loader: () => fetch("http://localhost:5000/allAddCampaign"),
       },
       {
         path: "/details/:id",
@@ -45,7 +48,17 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/addCampaign/${params.id}`),
       },
+      {
+        path: "/myDonate",
+        element: <MyDonate />,
+        loader: () =>
+          fetch(`http://localhost:5000/myDonate/${auth?.currentUser?.email}`),
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 

@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import auth from "../utils/firbase/firbase.init";
+import { AuthContext } from "../utils/provider/AuthProvider";
 const AddCampaign = () => {
+  const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -149,7 +152,7 @@ const AddCampaign = () => {
                   </label>
                   <input
                     name="date"
-                    type="text"
+                    type="date"
                     placeholder="Date/Time"
                     className="input input-bordered"
                     required
@@ -164,6 +167,8 @@ const AddCampaign = () => {
                     </label>
                     <input
                       name="email"
+                      defaultValue={user?.email}
+                      readOnly
                       type="text"
                       placeholder="Type your email"
                       className="input input-bordered"
@@ -177,7 +182,9 @@ const AddCampaign = () => {
                     </label>
                     <input
                       name="name"
+                      defaultValue={user?.displayName}
                       type="text"
+                      readOnly
                       placeholder="Type your Name"
                       className="input input-bordered"
                       required

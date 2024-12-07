@@ -1,13 +1,28 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../utils/provider/AuthProvider";
 
 const DetailsPage = () => {
   const data = useLoaderData();
-
+  const { user } = useContext(AuthContext);
   const { photo, desc, title, amount, campainType, date, email, name } =
     data || {};
+  const singleData = { email, title, amount, name, photo, user };
+  console.log(singleData);
 
-  const handleDonate = () => {};
+  const handleDonate = () => {
+    fetch("http://localhost:5000/myDonate", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(singleData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        data;
+      });
+  };
 
   return (
     <section className="my-10">

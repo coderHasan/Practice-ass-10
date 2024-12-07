@@ -19,6 +19,8 @@ const Register = () => {
       createUser(email, password).then((user) => {
         updadeUser(name, photo);
         setUser(user.user);
+        console.log(user.user);
+
         navigate(location.state ? location.state : "/");
         fetch("http://localhost:5000/users", {
           method: "POST",
@@ -30,6 +32,7 @@ const Register = () => {
           .then((res) => res.json())
           .then((data) => {
             setUser(data);
+            console.log(data);
           });
       });
     } else {

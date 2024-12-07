@@ -5,14 +5,17 @@ import { AuthContext } from "../utils/provider/AuthProvider";
 
 const Login = () => {
   const { handleGoogle, setUser, handleLogin } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const loginWithGoogle = () => {
     handleGoogle().then((user) => {
+      navigate(location.state ? location.state : "/");
       const users = user.user;
       setUser(users);
     });
   };
-  const location = useLocation();
-  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,18 +26,6 @@ const Login = () => {
       const users = user.user;
       navigate(location.state ? location.state : "/");
       setUser(users);
-
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(newUserInfo),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setUser(data);
-        });
     });
   };
 

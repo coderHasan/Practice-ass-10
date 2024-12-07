@@ -39,16 +39,16 @@ const NavBar = () => {
                   <Link to={"/"}>Home</Link>
                 </li>
                 <li>
-                  <Link to={"/"}>All Campaign</Link>
+                  <Link to={"/allCampaign"}>All Campaign</Link>
                 </li>
                 <li>
                   <Link to={"/campaing"}>Add New Campaign</Link>
                 </li>
                 <li>
-                  <Link to={"/"}>My Campaign</Link>
+                  <Link to={"/myCampaign"}>My Campaign</Link>
                 </li>
                 <li>
-                  <Link to={"/"}>My Donations</Link>
+                  <Link to={"/myDonate"}>My Donations</Link>
                 </li>
               </ul>
             </div>
@@ -68,10 +68,10 @@ const NavBar = () => {
                 <Link to={"/campaing"}>Add New Campaign</Link>
               </li>
               <li>
-                <Link to={"/"}>My Campaign</Link>
+                <Link to={"/myCampaign"}>My Campaign</Link>
               </li>
               <li>
-                <Link to={"/"}>My Donations</Link>
+                <Link to={"/myDonate"}>My Donations</Link>
               </li>
             </ul>
           </div>
