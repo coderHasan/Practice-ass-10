@@ -75,9 +75,9 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-          <div className="navbar-end relative group">
+          <div className="navbar-end relative ">
             {user && user.email ? (
-              <>
+              <div className="group">
                 <img
                   className="w-[50px] h-[50px]  rounded-full"
                   src={user.photoURL}
@@ -86,13 +86,13 @@ const NavBar = () => {
 
                 <div
                   onClick={handleSigOut}
-                  className=" absolute p-3 rounded-md translate-y-6 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 bg-zinc-600 px-5 text-white top-16 right-0 z-10 transition-all duration-500"
+                  className=" absolute p-2 rounded-md translate-y-6 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 bg-zinc-600 px-5 text-white top-6 right-0 z-10 transition-all duration-500"
                 >
                   <h1 className="mb-2">{user.email}</h1>
                   <h1 className="mb-2">{user.displayName}</h1>
-                  <Link className="btn">Log-Out</Link>
+                  <button className="btn">Log-Out</button>
                 </div>
-              </>
+              </div>
             ) : (
               <Link to={"/login"} className="btn">
                 LogIn

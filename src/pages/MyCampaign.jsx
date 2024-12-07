@@ -1,12 +1,50 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { useLoaderData, Link } from "react-router-dom";
 import { AuthContext } from "../utils/provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyCampaign = () => {
   const data = useLoaderData();
-  const { user } = useContext(AuthContext);
+  const [datas, setDatas] = useState(data);
+
+  const { user, loader } = useContext(AuthContext);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      console.log(result);
+
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/addCampaign/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+
+            if (data.deleteCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+
+              const remainingCampaign = datas.filter((p) => p._id != id);
+              setDatas(remainingCampaign);
+            }
+          });
+      }
+    });
+  };
 
   const remainingData = data.filter((users) => users?.email === user?.email);
   return (
@@ -24,15 +62,15 @@ const MyCampaign = () => {
                 <thead>
                   <tr className="bg-base-200">
                     <th></th>
-                    <th>Name</th>
                     <th>Title</th>
+                    <th>Description</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {/* row 1 */}
                   {remainingData?.map((item, index) => (
-                    <tr className="">
+                    <tr key={index} className="">
                       <th>
                         <div className="flex items-center gap-3">
                           <div className="avatar">
@@ -45,13 +83,13 @@ const MyCampaign = () => {
                           </div>
                         </div>
                       </th>
-                      <td>{item.name}</td>
                       <td>{item.title}</td>
+                      <td>{item.desc.slice(0, 78)}...</td>
                       <td className="flex  gap-3">
                         <Link to={`/update/${item._id}`}>
                           <FaEdit size={25} />
                         </Link>
-                        <button>
+                        <button onClick={() => handleDelete(item._id)}>
                           <FaDeleteLeft size={25} />
                         </button>
                       </td>
