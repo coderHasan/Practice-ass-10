@@ -28,7 +28,18 @@ const MyDonate = () => {
                   {/* row 1 */}
                   {data?.map((item, index) => (
                     <tr>
-                      <th>{index + 1}</th>
+                      <th>
+                        <div className="flex items-center gap-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle h-12 w-12">
+                              <img
+                                src={item.photo}
+                                alt="Avatar Tailwind CSS Component"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </th>
                       <td>{item.name}</td>
                       <td>{item.title}</td>
                       <td>{item.amount}</td>

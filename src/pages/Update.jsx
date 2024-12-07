@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import Swal from "sweetalert2";
-import { AuthContext } from "../utils/provider/AuthProvider";
-const AddCampaign = () => {
-  const { user } = useContext(AuthContext);
+
+const Update = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -48,7 +47,7 @@ const AddCampaign = () => {
         if (data.acknowledged) {
           Swal.fire({
             title: "Success",
-            text: "Your new campaign aded your website",
+            text: "Update success",
             icon: "success",
             confirmButtonText: "Cool",
           });
@@ -201,4 +200,4 @@ const AddCampaign = () => {
   );
 };
 
-export default AddCampaign;
+export default Update;

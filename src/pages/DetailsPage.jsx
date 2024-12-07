@@ -8,7 +8,6 @@ const DetailsPage = () => {
   const { photo, desc, title, amount, campainType, date, email, name } =
     data || {};
   const singleData = { email, title, amount, name, photo, user };
-  console.log(singleData);
 
   const handleDonate = () => {
     fetch("http://localhost:5000/myDonate", {

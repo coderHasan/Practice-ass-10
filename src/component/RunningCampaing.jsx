@@ -2,6 +2,8 @@ import React from "react";
 import CampaingCard from "./CampaingCard";
 
 const RunningCampaing = ({ data }) => {
+  const remainingData = data.slice(0, 6);
+
   return (
     <div className="container mx-auto px-3 md:px-5">
       <div>
@@ -16,7 +18,7 @@ const RunningCampaing = ({ data }) => {
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-5 lg:grid-cols-3">
-          {data?.map((item) => (
+          {remainingData?.map((item) => (
             <CampaingCard key={item._id} data={item} />
           ))}
         </div>

@@ -10,6 +10,7 @@ import PrivetRoute from "./PrivetRoute";
 import ErrorPage from "../pages/ErrorPage";
 import MyDonate from "../pages/MyDonate";
 import auth from "../utils/firbase/firbase.init";
+import MyCampaign from "../pages/MyCampaign";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       {
         path: "allCampaign",
         element: <AllCampaign />,
-        loader: () => fetch("http://localhost:5000/allAddCampaign"),
+        loader: () => fetch("http://localhost:5000/addCampaign"),
       },
       {
         path: "/details/:id",
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
         element: <MyDonate />,
         loader: () =>
           fetch(`http://localhost:5000/myDonate/${auth?.currentUser?.email}`),
+      },
+      {
+        path: "/myCampaign",
+        element: <MyCampaign />,
+        loader: () => fetch(`http://localhost:5000/addCampaign`),
       },
     ],
   },
