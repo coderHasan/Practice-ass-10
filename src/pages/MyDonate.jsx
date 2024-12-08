@@ -6,9 +6,7 @@ const MyDonate = () => {
   const [donate, setDonate] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://donation-app-seven.vercel.app/myDonate/${auth?.currentUser?.email}`
-    )
+    fetch(`https://donation-app-seven.vercel.app/myDonate/${_id}`)
       .then((res) => res.json())
       .then((data) => setDonate(data));
   });

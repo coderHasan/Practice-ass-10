@@ -1,8 +1,10 @@
-# React + Vite
+Name: Crowd funding donation page
+Live Link: https://crowd-funding-3a99f.web.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. React Router
+   2.React Typewere
+   3.React animation.
+   4.React react carosole
+   5.firebase auth
+   6.express js
+   7.mongoDB
