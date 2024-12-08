@@ -1,17 +1,25 @@
-import React, { useContext } from "react";
-import { Link, useLoaderData } from "react-router";
-import { AuthContext } from "../utils/provider/AuthProvider";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router";
+import auth from "../utils/firbase/firbase.init";
 
 const MyDonate = () => {
-  const data = useLoaderData();
+  const [donate, setDonate] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `https://donation-app-seven.vercel.app/myDonate/${auth?.currentUser?.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => setDonate(data));
+  });
 
   return (
     <div className="container mx-auto px-3 md:px-5 mt-20 ">
       <div className=" h-screen">
         <div className="mb-6 text-3xl font-semibold">
-          Total Donate: {data.length}
+          Total Donate: {donate.length}
         </div>
-        {data ? (
+        {donate ? (
           <div>
             <div className="overflow-x-auto">
               <table className="table table-zebra">
@@ -26,7 +34,7 @@ const MyDonate = () => {
                 </thead>
                 <tbody>
                   {/* row 1 */}
-                  {data?.map((item, index) => (
+                  {donate?.map((item, index) => (
                     <tr key={index}>
                       <th>
                         <div className="flex items-center gap-3">

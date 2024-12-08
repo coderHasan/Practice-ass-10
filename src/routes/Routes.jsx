@@ -65,10 +65,6 @@ const router = createBrowserRouter([
             <MyDonate />
           </PrivetRoute>
         ),
-        loader: () =>
-          fetch(
-            `https://donation-app-seven.vercel.app/myDonate/${auth?.currentUser?.email}`
-          ),
       },
       {
         path: "/myCampaign",
