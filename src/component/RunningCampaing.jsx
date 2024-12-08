@@ -1,4 +1,5 @@
 import React from "react";
+import { Slide } from "react-awesome-reveal";
 import CampaingCard from "./CampaingCard";
 
 const RunningCampaing = ({ data }) => {
@@ -9,7 +10,7 @@ const RunningCampaing = ({ data }) => {
       <div>
         <div>
           <h1 className="text-center text-3xl font-bold text-secondary">
-            Our Running Campaing
+            <Slide direction="down">Our Running Campaing</Slide>
           </h1>
           <p className="text-zinc-500 my-5 text-center w-6/12 mx-auto">
             Through this campaign, we're bringing together passionate

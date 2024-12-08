@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../utils/provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const DetailsPage = () => {
   const data = useLoaderData();
@@ -19,12 +20,18 @@ const DetailsPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        data;
+        if (data.acknowledged) {
+          Swal.fire({
+            title: "Success!",
+            text: "Your file has been aded.",
+            icon: "success",
+          });
+        }
       });
   };
 
   return (
-    <section className="my-10">
+    <section className="my-20 ">
       <div className="container mx-auto px-3 md:px-5">
         <div>
           <div className="hero bg-base-200 min-h-screen">

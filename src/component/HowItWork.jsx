@@ -1,13 +1,29 @@
 import React from "react";
 import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlineMessage } from "react-icons/md";
+import { Typewriter } from "react-simple-typewriter";
 
 const HowItWork = () => {
   return (
     <div className="container mx-auto px-3 md:px-5">
       <div>
-        <h1 className="text-3xl font-bold text-center text-amber-500">
-          How It Works
+        <h1 className="text-3x  font-bold text-center text-amber-500">
+          <span className="text-3xl">How It Works</span>
+          <p>
+            <Typewriter
+              words={[
+                " Fund a Campaign",
+                " We Do Our Part",
+                "Get Solid Updates",
+              ]}
+              loop={true}
+              cursor
+              cursorStyle="_"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+          </p>
         </h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5  justify-center mt-7">
           <div className="text-center">

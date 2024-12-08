@@ -59,7 +59,7 @@ const AddCampaign = () => {
   };
 
   return (
-    <div className="container mx-auto px-3 md:px-5">
+    <div className="container mx-auto px-3 md:px-5 mt-20">
       <div>
         <div className="hero bg-base-200 min-h-screen">
           <div className="hero-content flex-col">

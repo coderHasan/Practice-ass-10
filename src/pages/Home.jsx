@@ -9,10 +9,10 @@ const Home = () => {
   const data = useLoaderData();
   return (
     <main>
-      <section className="mb-9 mt-4">
+      <section className="mb-9 mt-20">
         <Banner />
       </section>
-      <section className="my-9">
+      <section className="my-9 ">
         <RunningCampaing data={data} />
       </section>
       <section className="my-10">

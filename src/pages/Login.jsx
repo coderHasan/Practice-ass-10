@@ -30,7 +30,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container mx-auto px-3 md:px-5">
+    <div className="container mx-auto px-3 md:px-5 mt-20">
       <div className="hero bg-gradient-to-br rounded-xl my-6 from-green-400 to-orange-300 min-h-screen">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">

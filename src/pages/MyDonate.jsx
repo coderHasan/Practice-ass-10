@@ -6,7 +6,7 @@ const MyDonate = () => {
   const data = useLoaderData();
 
   return (
-    <div className="container mx-auto px-3 md:px-5">
+    <div className="container mx-auto px-3 md:px-5 mt-20 ">
       <div className="h-[400px]">
         <div className="mb-6 text-3xl font-semibold">
           Total Donate: {data.length}
