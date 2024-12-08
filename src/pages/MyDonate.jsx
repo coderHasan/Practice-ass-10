@@ -7,7 +7,7 @@ const MyDonate = () => {
 
   return (
     <div className="container mx-auto px-3 md:px-5 mt-20 ">
-      <div className="h-[400px]">
+      <div className=" h-screen">
         <div className="mb-6 text-3xl font-semibold">
           Total Donate: {data.length}
         </div>
@@ -27,7 +27,7 @@ const MyDonate = () => {
                 <tbody>
                   {/* row 1 */}
                   {data?.map((item, index) => (
-                    <tr>
+                    <tr key={index}>
                       <th>
                         <div className="flex items-center gap-3">
                           <div className="avatar">

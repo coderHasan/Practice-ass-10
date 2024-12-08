@@ -22,7 +22,7 @@ const Register = () => {
         console.log(user.user);
 
         navigate(location.state ? location.state : "/");
-        fetch("http://localhost:5000/users", {
+        fetch("https://donation-app-seven.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

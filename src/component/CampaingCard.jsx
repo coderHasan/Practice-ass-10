@@ -8,7 +8,7 @@ const CampaingCard = ({ data }) => {
     <div className="">
       <div>
         <Zoom cascade={true}>
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card  dark:text-black bg-base-100 shadow-xl">
             <figure>
               <img className="w-full h-[300px]" src={photo} alt="Shoes" />
             </figure>

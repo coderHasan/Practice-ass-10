@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../utils/provider/AuthProvider";
 
-const NavBar = () => {
+const NavBar = ({ darkMode, setDarkMode }) => {
   const { handleSigOut, user } = useContext(AuthContext);
 
   return (
     <header className="fixed top-0 left-0 w-full z-10">
-      <div className="">
+      <div className="dark:bg-black bg-white">
         <div className="container mx-auto px-3 md:px-5">
           <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar ">
               <div className="navbar-start">
                 <div className="dropdown">
                   <div
@@ -33,33 +33,56 @@ const NavBar = () => {
                       />
                     </svg>
                   </div>
-                  <ul
-                    tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                  >
-                    <li>
-                      <Link to={"/"}>Home</Link>
-                    </li>
-                    <li>
-                      <Link to={"/allCampaign"}>All Campaign</Link>
-                    </li>
-                    <li>
-                      <Link to={"/campaing"}>Add New Campaign</Link>
-                    </li>
-                    <li>
-                      <Link to={"/myCampaign"}>My Campaign</Link>
-                    </li>
-                    <li>
-                      <Link to={"/myDonate"}>My Donations</Link>
-                    </li>
-                  </ul>
+                  {darkMode ? (
+                    <ul
+                      tabIndex={0}
+                      className="menu menu-sm text-black dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                    >
+                      <li>
+                        <Link to={"/"}>Home</Link>
+                      </li>
+                      <li>
+                        <Link to={"/allCampaign"}>All Campaign</Link>
+                      </li>
+                      <li>
+                        <Link to={"/campaing"}>Add New Campaign</Link>
+                      </li>
+                      <li>
+                        <Link to={"/myCampaign"}>My Campaign</Link>
+                      </li>
+                      <li>
+                        <Link to={"/myDonate"}>My Donations</Link>
+                      </li>
+                    </ul>
+                  ) : (
+                    <ul
+                      tabIndex={0}
+                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                    >
+                      <li>
+                        <Link to={"/"}>Home</Link>
+                      </li>
+                      <li>
+                        <Link to={"/allCampaign"}>All Campaign</Link>
+                      </li>
+                      <li>
+                        <Link to={"/campaing"}>Add New Campaign</Link>
+                      </li>
+                      <li>
+                        <Link to={"/myCampaign"}>My Campaign</Link>
+                      </li>
+                      <li>
+                        <Link to={"/myDonate"}>My Donations</Link>
+                      </li>
+                    </ul>
+                  )}
                 </div>
                 <Link to="/" className="btn btn-ghost font-bold text-3xl">
                   Crowdcube
                 </Link>
               </div>
               <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu  menu-horizontal px-1">
                   <li>
                     <Link to={"/"}>Home</Link>
                   </li>
@@ -76,6 +99,18 @@ const NavBar = () => {
                     <Link to={"/myDonate"}>My Donations</Link>
                   </li>
                 </ul>
+              </div>
+              <div>
+                <button
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="relative w-14 h-8 rounded-full bg-gray-300 dark:bg-gray-600 focus:outline-none"
+                >
+                  <span
+                    className={`absolute w-6 h-6 top-1 left-0 bg-white dark:bg-gray-800 rounded-full transform transition-transform ${
+                      darkMode ? "translate-x-6" : "translate-x-0"
+                    }`}
+                  ></span>
+                </button>
               </div>
               <div className="navbar-end relative ">
                 {user && user.email ? (

@@ -36,7 +36,7 @@ const AddCampaign = () => {
       return;
     }
 
-    fetch("http://localhost:5000/addCampaign", {
+    fetch("https://donation-app-seven.vercel.app/addCampaign", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -61,7 +61,7 @@ const AddCampaign = () => {
   return (
     <div className="container mx-auto px-3 md:px-5 mt-20">
       <div>
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="hero bg-base-200 dark:bg-gray-900 dark:text-black min-h-screen">
           <div className="hero-content flex-col">
             <div className="text-center lg:text-left">
               <h1 className="text-3xl font-bold">Add New Campaign!</h1>

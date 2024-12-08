@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { useLoaderData, Link } from "react-router-dom";
@@ -6,10 +6,9 @@ import { AuthContext } from "../utils/provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const MyCampaign = () => {
-  const data = useLoaderData();
-  const [datas, setDatas] = useState(data);
+  const [data, setData] = useState([]);
 
-  const { user, loader } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -24,7 +23,7 @@ const MyCampaign = () => {
       console.log(result);
 
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/addCampaign/${id}`, {
+        fetch(`https://donation-app-seven.vercel.app/addCampaign/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -37,14 +36,21 @@ const MyCampaign = () => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
-
-              const remainingCampaign = datas.filter((p) => p._id != id);
-              setDatas(remainingCampaign);
+              const remainingCampaign = data.filter((p) => p._id != id);
+              setData(remainingCampaign);
             }
           });
       }
     });
   };
+
+  useEffect(() => {
+    fetch(`https://donation-app-seven.vercel.app/addCampaign`)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      });
+  }, [data]);
 
   const remainingData = data.filter((users) => users?.email === user?.email);
   return (

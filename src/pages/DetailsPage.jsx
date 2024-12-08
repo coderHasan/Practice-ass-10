@@ -8,10 +8,10 @@ const DetailsPage = () => {
   const { user } = useContext(AuthContext);
   const { photo, desc, title, amount, campainType, date, email, name } =
     data || {};
-  const singleData = { email, title, amount, name, photo, user };
+  const singleData = { email, title, amount, name, photo };
 
   const handleDonate = () => {
-    fetch("http://localhost:5000/myDonate", {
+    fetch("https://donation-app-seven.vercel.app/myDonate", {
       method: "POST",
       headers: {
         "content-type": "application/json",

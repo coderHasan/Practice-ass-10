@@ -21,7 +21,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/addCampaign"),
+        loader: () =>
+          fetch("https://donation-app-seven.vercel.app/addCampaign"),
       },
       {
         path: "login",
@@ -42,7 +43,8 @@ const router = createBrowserRouter([
       {
         path: "allCampaign",
         element: <AllCampaign />,
-        loader: () => fetch("http://localhost:5000/addCampaign"),
+        loader: () =>
+          fetch("https://donation-app-seven.vercel.app/addCampaign"),
       },
       {
         path: "/details/:id",
@@ -52,24 +54,33 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/addCampaign/${params.id}`),
+          fetch(
+            `https://donation-app-seven.vercel.app/addCampaign/${params.id}`
+          ),
       },
       {
         path: "/myDonate",
-        element: <MyDonate />,
+        element: (
+          <PrivetRoute>
+            <MyDonate />
+          </PrivetRoute>
+        ),
         loader: () =>
-          fetch(`http://localhost:5000/myDonate/${auth?.currentUser?.email}`),
+          fetch(
+            `https://donation-app-seven.vercel.app/myDonate/${auth?.currentUser?.email}`
+          ),
       },
       {
         path: "/myCampaign",
         element: <MyCampaign />,
-        loader: () => fetch(`http://localhost:5000/addCampaign`),
       },
       {
         path: "/update/:id",
         element: <Update />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/addCampaign/${params.id}`),
+          fetch(
+            `https://donation-app-seven.vercel.app/addCampaign/${params.id}`
+          ),
       },
     ],
   },
