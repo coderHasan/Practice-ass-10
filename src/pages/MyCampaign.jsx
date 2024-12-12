@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 const MyCampaign = () => {
   const [data, setData] = useState([]);
+  const [loader, setLoader] = useState(true);
 
   const { user } = useContext(AuthContext);
 
@@ -20,8 +21,6 @@ const MyCampaign = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-      console.log(result);
-
       if (result.isConfirmed) {
         fetch(`https://donation-app-seven.vercel.app/addCampaign/${id}`, {
           method: "DELETE",
@@ -49,6 +48,7 @@ const MyCampaign = () => {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
+        setLoader(false);
       });
   }, [data]);
 
@@ -60,51 +60,57 @@ const MyCampaign = () => {
           Total Campaign: {remainingData.length}
         </div>
 
-        {remainingData && (
-          <div>
-            <div className="overflow-x-auto">
-              <table className="table table-zebra">
-                {/* head */}
-                <thead>
-                  <tr className="bg-base-200">
-                    <th></th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* row 1 */}
-                  {remainingData?.map((item, index) => (
-                    <tr key={index} className="">
-                      <th>
-                        <div className="flex items-center gap-3">
-                          <div className="avatar">
-                            <div className="mask mask-squircle h-12 w-12">
-                              <img
-                                src={item.photo}
-                                alt="Avatar Tailwind CSS Component"
-                              />
+        {loader ? (
+          <div className="text-center mt-10">
+            <span className="loading loading-ring loading-lg"></span>
+          </div>
+        ) : (
+          remainingData && (
+            <div>
+              <div className="overflow-x-auto">
+                <table className="table table-zebra">
+                  {/* head */}
+                  <thead>
+                    <tr className="bg-base-200">
+                      <th></th>
+                      <th>Title</th>
+                      <th>Description</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* row 1 */}
+                    {remainingData?.map((item, index) => (
+                      <tr key={index} className="">
+                        <th>
+                          <div className="flex items-center gap-3">
+                            <div className="avatar">
+                              <div className="mask mask-squircle h-12 w-12">
+                                <img
+                                  src={item.photo}
+                                  alt="Avatar Tailwind CSS Component"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </th>
-                      <td>{item.title}</td>
-                      <td>{item.desc.slice(0, 78)}...</td>
-                      <td className="flex  gap-3">
-                        <Link to={`/update/${item._id}`}>
-                          <FaEdit size={25} />
-                        </Link>
-                        <button onClick={() => handleDelete(item._id)}>
-                          <FaDeleteLeft size={25} />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        </th>
+                        <td>{item.title}</td>
+                        <td>{item.desc.slice(0, 78)}...</td>
+                        <td className="flex  gap-3">
+                          <Link to={`/update/${item._id}`}>
+                            <FaEdit size={25} />
+                          </Link>
+                          <button onClick={() => handleDelete(item._id)}>
+                            <FaDeleteLeft size={25} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          )
         )}
       </div>
     </div>

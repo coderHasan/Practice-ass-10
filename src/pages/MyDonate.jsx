@@ -1,23 +1,37 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import auth from "../utils/firbase/firbase.init";
+import { AuthContext } from "../utils/provider/AuthProvider";
 
 const MyDonate = () => {
   const [donate, setDonate] = useState([]);
+  const { user } = useContext(AuthContext);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    fetch(`https://donation-app-seven.vercel.app/myDonate/${_id}`)
+    fetch(
+      `https://donation-app-seven.vercel.app/myDonate/${auth.currentUser.email}`
+    )
       .then((res) => res.json())
-      .then((data) => setDonate(data));
-  });
+      .then((data) => {
+        setDonate(data);
+        setLoader(false);
+      });
+  }, [donate]);
+
+  const remaining = donate.filter((doner) => doner.email === user.email);
 
   return (
     <div className="container mx-auto px-3 md:px-5 mt-20 ">
-      <div className=" h-screen">
+      <div className=" ">
         <div className="mb-6 text-3xl font-semibold">
-          Total Donate: {donate.length}
+          Total Donate: {remaining.length}
         </div>
-        {donate ? (
+        {loader ? (
+          <div className="text-center mt-10">
+            <span className="loading loading-ring loading-lg"></span>
+          </div>
+        ) : remaining ? (
           <div>
             <div className="overflow-x-auto">
               <table className="table table-zebra">
@@ -32,7 +46,7 @@ const MyDonate = () => {
                 </thead>
                 <tbody>
                   {/* row 1 */}
-                  {donate?.map((item, index) => (
+                  {remaining?.map((item, index) => (
                     <tr key={index}>
                       <th>
                         <div className="flex items-center gap-3">

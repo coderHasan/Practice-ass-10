@@ -27,13 +27,16 @@ const AuthProvider = ({ children }) => {
   };
 
   const handleLogin = (email, password) => {
+    setLoader(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const handleSigOut = () => {
+    setLoader(true);
     return signOut(auth);
   };
   const updadeUser = (name, photo) => {
+    setLoader(true);
     updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
@@ -44,6 +47,7 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
     loader,
+    setLoader,
     createUser,
     handleGoogle,
     handleLogin,
